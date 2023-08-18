@@ -8,7 +8,7 @@ DROP TABLE IF EXISTS user ;
 -- -----------------------------------------------------
 
 CREATE TABLE IF NOT EXISTS user (
-  id INT NOT NULL AUTO_INCREMENT,
+  id BINARY(16) DEFAULT (UUID_TO_BIN(UUID())) NOT NULL,
   first_name VARCHAR(255) NOT NULL,
   last_name VARCHAR(255) NOT NULL,
   email VARCHAR(255) NOT NULL,
@@ -23,8 +23,8 @@ CREATE TABLE IF NOT EXISTS user (
 -- -----------------------------------------------------
 
 CREATE TABLE IF NOT EXISTS account (
-  id INT NOT NULL AUTO_INCREMENT,
-  user_id INT NOT NULL,
+  id BINARY(16) DEFAULT (UUID_TO_BIN(UUID())) NOT NULL,
+  user_id BINARY(16) NOT NULL,
   account_name VARCHAR(255) NULL,
   username VARCHAR(255) NOT NULL,
   account_password VARCHAR(255) NOT NULL,

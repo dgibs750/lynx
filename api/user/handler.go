@@ -2,10 +2,11 @@ package user
 
 import (
 	"database/sql"
+	"fmt"
 	"net/http"
-	"strconv"
 
 	"github.com/gin-gonic/gin"
+	"github.com/google/uuid"
 
 	"github.com/dgibs750/lynx/util/validator"
 )
@@ -14,7 +15,8 @@ func (a *API) GetUserBy(c *gin.Context) {
 	email := c.Query("email")
 	if email == "" {
 		stringId := c.Query("id")
-		id, err := strconv.ParseInt(stringId, 10, 64)
+		id, err := uuid.Parse(stringId)
+		fmt.Printf("Parsed UUID : %v", id)
 		if err != nil {
 			c.IndentedJSON(http.StatusBadRequest, gin.H{"message": "ID is not valid"})
 			return
